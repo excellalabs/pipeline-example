@@ -1,9 +1,9 @@
 {
   "name": "pipeline-example",
-  "scripts": {
-    "postdeploy": "npm test"
+  "scripts": {},
+  "env": {
+    "NODE_ENV": "test"
   },
-  "env": {},
   "formation": {},
   "addons": [],
   "buildpacks": [
