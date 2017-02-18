@@ -22,7 +22,7 @@
     "dev:bundle": "watchify app/index.tsx -d -v -p tsify -p [ browserify-livereload --port 1337 ] -o public/index.js",
     "dev:server": "tsc --project tsconfig.server.watch.json",
     "dev:css": "npm run build:css && node-sass --watch --source-map true --source-map-contents sass/index.scss --output public",
-    "dev:open": "sleepms 5000 && opn \"http://localhost:8001/\""
+    "dev:open": "sleepms 2000 && opn \"http://localhost:8001/\""
   },
   "repository": {
     "type": "git",
@@ -73,5 +73,17 @@
     "tslint": "^4.4.2",
     "tslint-config-standard": "^4.0.0",
     "watchify": "^3.9.0"
+  },
+  "jest": {
+    "collectCoverage": true,
+    "collectCoverageFrom": ["app/**/*.js", "server/**/*.js", "!**/node_modules/**", "!**/vendor/**", "!**/__tests__/**"],
+    "coverageThreshold": {
+      "global": {
+        "statements": 50,
+        "branches": 50,
+        "functions": 50,
+        "lines": 50
+      }
+    }
   }
 }

@@ -1,0 +1,14 @@
+{
+  "name": "pipeline-example",
+  "scripts": {
+    "postdeploy": "npm test"
+  },
+  "env": {},
+  "formation": {},
+  "addons": [],
+  "buildpacks": [
+    {
+      "url": "heroku/nodejs"
+    }
+  ]
+}

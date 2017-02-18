@@ -4,8 +4,7 @@ import * as express from 'express'
 const app = express()
 
 app.use(express.static('public'))
-
-console.log('test')
+app.use('/coverage', express.static('coverage/lcov-report'))
 
 app.use((err, req, res, next) => {
   if(err){
