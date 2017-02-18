@@ -19,7 +19,7 @@ type ResultFormatter = (phase: number, total: number, error: string) => string
 
 const INSTALLING_MESSAGE = (phaseTime) => `Installing... (${phaseTime}s elapsed)`
 const TESTING_MESSAGE = (phaseTime, totalTime) => `Testing... (${phaseTime}s elapsed -- ${totalTime}s total)`
-const SUCCESS_MESSAGE = (phaseTime, totalTime) => `Done!<br/><br/>Installing took ${totalTime - phaseTime}s<br/>Testing took ${phaseTime}s<br/>Took ${totalTime}s total)`
+const SUCCESS_MESSAGE = (phaseTime, totalTime) => `Done!<br/><br/>Installing took ${Math.round((totalTime - phaseTime) * 10) / 10}s<br/>Testing took ${phaseTime}s<br/>Took ${totalTime}s total`
 
 const INSTALL_FAILURE_MESSAGE = (phaseTime, totalTime, err) => `Install failed after ${phaseTime} seconds (${totalTime} elapsed total): ${err}`
 const TEST_FAILURE_MESSAGE = (phaseTime, totalTime, err) => `Test run failed after ${phaseTime} seconds (${totalTime} elapsed total): ${err}`
