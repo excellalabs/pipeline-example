@@ -1,0 +1,26 @@
+{
+  "ignore": [
+    ".git",
+    "node_modules/**/node_modules",
+    "static",
+    "app",
+    "public",
+    "sass",
+    "scripts",
+    "./*.json"
+  ],
+  "verbose": true,
+  "execMap": {
+    "js": "node --harmony"
+  },
+  "events": {
+    "restart": "./scripts/notify.js \"$FILENAME'\""
+  },
+  "watch": [
+    "server"
+  ],
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "ext": "js json"
+}

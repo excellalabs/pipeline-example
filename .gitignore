@@ -1,0 +1,20 @@
+
+# editors
+.vscode
+
+# npm
+node_modules
+npm-debug.log
+
+# output
+public
+
+# tests
+__tests__/*.js
+__tests__/**/*.js
+app/*.js
+app/**/*.js
+server/*.js
+server/**/*.js
+*.js.map
+coverage
