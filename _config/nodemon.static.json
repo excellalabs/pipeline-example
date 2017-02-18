@@ -1,0 +1,19 @@
+{
+  "ignore": [
+    ".git",
+    "node_modules/**/node_modules",
+    "app",
+    "server",
+    "public",
+    "sass",
+    "scripts"
+  ],
+  "verbose": true,
+  "watch": [
+    "static"
+  ],
+  "env": {
+    "NODE_ENV": "development"
+  },
+  "ext": "png ico html json js"
+}

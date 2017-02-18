@@ -7,7 +7,7 @@ const app = express()
 
 app.use(express.static('public'))
 
-if(process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== 'production') {
   app.use('/coverage', express.static('coverage/lcov-report'))
 }
 

@@ -5,7 +5,7 @@ import runTests from './runTests'
 
 const router = express.Router()
 
-if(process.env.NODE_ENV !== 'production') {
+if (process.env.NODE_ENV !== 'production') {
   router.use('/runTests', runTests)
 }
 

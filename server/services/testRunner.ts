@@ -9,7 +9,7 @@ let installEndTime: number = null
 let testEndTime: number = null
 
 export type TestRunnerStage = 'INSTALLING' | 'TESTING' | 'DONE' | 'FAILED_INSTALL' | 'FAILED_TEST'
-export module TestRunnerStage {
+export namespace TestRunnerStage {
   export const INSTALLING: TestRunnerStage = 'INSTALLING'
   export const TESTING: TestRunnerStage = 'TESTING'
   export const DONE: TestRunnerStage = 'DONE'
@@ -24,26 +24,12 @@ export interface TestRunnerResult {
   error?: Error
 }
 
-const DEFAULT_TIMEOUT = 1000
-export const getStatus = async (timeout = DEFAULT_TIMEOUT): Promise<TestRunnerResult> => {
-  let responded = false
-  testPromise = testPromise || runInstall().then(runTests)
-  try {
-    await checkWithTimeout(timeout)
-    if (testsDone) {
-      return done()
-    } else if (installDone) {
-      return testing()
-    } else {
-      return installing()
-    }
-  } catch(e) {
-    if(installDone){
-      return testFailed(e)
-    } else {
-      return installFailed(e)
-    }
-  }
+const makeTimeout = (duration: number) => {
+  return new Promise<void>((resolve, reject) => {
+    setTimeout(() => {
+      resolve()
+    }, duration)
+  })
 }
 
 const checkWithTimeout = (timeout: number) => {
@@ -53,20 +39,12 @@ const checkWithTimeout = (timeout: number) => {
   })
 }
 
-const makeTimeout = (duration: number) => {
-  return new Promise<void>((resolve, reject) => {
-    setTimeout(() => {
-      resolve()
-    }, duration)
-  })
-}
-
 const runInstall = () => {
   return new Promise<void>((resolve, reject) => {
     startTime = Date.now()
     exec('npm install', (err, stdout, stderr) => {
       installEndTime = Date.now()
-      if(err){
+      if (err) {
         reject(err)
       } else {
         installDone = true
@@ -80,7 +58,7 @@ const runTests = () => {
   return new Promise<void>((resolve, reject) => {
     exec('npm test', (err, stdout, stderr) => {
       testEndTime = Date.now()
-      if(err){
+      if (err) {
         reject(err)
       } else {
         testsDone = true
@@ -135,5 +113,27 @@ const installFailed = (err: Error): TestRunnerResult => {
     secondsElapsedInPhase: toSeconds(installEndTime - startTime),
     secondsElapsedTotal: toSeconds(installEndTime - startTime),
     error: err
+  }
+}
+
+const DEFAULT_TIMEOUT = 1000
+export const getStatus = async (timeout = DEFAULT_TIMEOUT): Promise<TestRunnerResult> => {
+  let responded = false
+  testPromise = testPromise || runInstall().then(runTests)
+  try {
+    await checkWithTimeout(timeout)
+    if (testsDone) {
+      return done()
+    } else if (installDone) {
+      return testing()
+    } else {
+      return installing()
+    }
+  } catch (e) {
+    if (installDone) {
+      return testFailed(e)
+    } else {
+      return installFailed(e)
+    }
   }
 }

@@ -6,9 +6,9 @@ import { getStatus, TestRunnerStage } from '../services/testRunner'
 const router = express.Router()
 
 router.get('/', catcher(async (req, res) => {
-  const timeout = req.query.timeout && parseInt(req.query.timeout) || undefined
+  const timeout = req.query.timeout && parseInt(req.query.timeout, 10) || undefined
   const result = await getStatus(timeout)
-  if(result.stage === 'DONE' && !req.query.noredirect){
+  if (result.stage === 'DONE' && !req.query.noredirect) {
     return res.redirect('/coverage')
   }
   const formatter = getMessageFormatter(result.stage)
@@ -27,7 +27,7 @@ const TEST_FAILURE_MESSAGE = (phaseTime, totalTime, err) => `Test run failed aft
 const UNKNOWN_MESSAGE = () => 'Something went wrong!'
 
 function getMessageFormatter (stage: TestRunnerStage): ResultFormatter {
-  switch(stage) {
+  switch (stage) {
     case TestRunnerStage.INSTALLING: return INSTALLING_MESSAGE
     case TestRunnerStage.TESTING: return TESTING_MESSAGE
     case TestRunnerStage.DONE: return SUCCESS_MESSAGE
