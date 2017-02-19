@@ -1,0 +1,12 @@
+{
+  "$schema": "http://json.schemastore.org/tsconfig",
+  "extends": "./tsconfig.app.json",
+  "include": [
+    "../server"
+  ],
+  "exclude": [
+    "../node_modules",
+    "../**/__tests__/*",
+    "../app"
+  ]
+}
