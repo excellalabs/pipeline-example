@@ -1,6 +1,8 @@
 
-import { Hello } from './hello'
+import { Drawer } from './drawer'
+import { Window } from './window'
 
 export interface State {
-  hello: Hello
+  drawer: Drawer
+  window: Window
 }
