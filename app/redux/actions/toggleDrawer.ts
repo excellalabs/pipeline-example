@@ -1,7 +1,6 @@
 
 import { Action } from 'redux'
 
-
 export interface ToggleDrawerProperties {
   open: boolean
 }

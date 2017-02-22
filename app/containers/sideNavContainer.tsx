@@ -9,7 +9,7 @@ import { ToggleDrawer } from '../redux/actions'
 
 export type HeaderProps = HeaderStateProps & HeaderDispatchProps
 
-export class Header extends React.Component<HeaderProps, {}>{
+export class Header extends React.Component<HeaderProps, {}> {
   render () {
     return (
       <Drawer docked={!this.props.isBelowDrawerBreakpoint} open={this.props.open} onRequestChange={this.props.onToggle} width={Metrics.drawerWidth} />

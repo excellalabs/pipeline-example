@@ -24,7 +24,6 @@ interface HeaderStateProps {
 }
 
 const stateToProps = (state: State): HeaderStateProps => {
-  state.window.isBelowDrawerBreakpoint
   return {
     drawerOpen: state.drawer.open,
     isBelowDrawerBreakpoint: state.window.isBelowDrawerBreakpoint
@@ -32,7 +31,7 @@ const stateToProps = (state: State): HeaderStateProps => {
 }
 
 interface HeaderDispatchProps {
-  toggleDrawer(open: boolean)
+  toggleDrawer (open: boolean)
 }
 
 const dispatchToProps = (dispatch): HeaderDispatchProps => {

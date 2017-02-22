@@ -3,14 +3,13 @@ import { ChangeWindowWidth } from './redux/actions'
 import store from './store'
 import { Metrics } from './constants'
 
-
-const throttle = function(type: string, name: string, target?: EventTarget) {
+const throttle = (type: string, name: string, target?: EventTarget) => {
   target = target || window
-  var running = false
+  let running = false
   target.addEventListener(type, () => {
     if (running) { return }
     running = true
-    requestAnimationFrame(function() {
+    requestAnimationFrame(() => {
       target.dispatchEvent(new CustomEvent(name))
       running = false
     })
@@ -19,7 +18,7 @@ const throttle = function(type: string, name: string, target?: EventTarget) {
 
 const optimizedResize = 'optimizedResize'
 
-throttle('resize', optimizedResize);
+throttle('resize', optimizedResize)
 
 const updateWindowWidth = () => {
   store.dispatch(ChangeWindowWidth({ windowWidth: window.innerWidth }))

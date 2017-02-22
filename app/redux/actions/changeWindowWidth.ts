@@ -1,7 +1,6 @@
 
 import { Action } from 'redux'
 
-
 export interface ChangeWindowWidthProperties {
   windowWidth: number
 }
