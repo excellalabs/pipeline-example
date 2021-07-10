@@ -1,9 +1,0 @@
-exports[`snapshots should render the correct name of "james" 1`] = `
-<Unknown
-  name="james" />
-`;
-
-exports[`snapshots should render the correct name of "world" 1`] = `
-<Unknown
-  name="world" />
-`;

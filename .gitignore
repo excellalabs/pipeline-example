@@ -18,3 +18,5 @@ server/*.js
 server/**/*.js
 *.js.map
 coverage
+
+*.orig

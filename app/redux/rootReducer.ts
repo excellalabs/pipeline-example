@@ -3,13 +3,16 @@ import { Reducer, Action, combineReducers } from 'redux'
 import { routerReducer } from 'react-router-redux'
 
 import { State } from './types'
-import helloReducer, { INITIAL_STATE as HELLO } from './reducers/hello'
+import drawerReducer, { INITIAL_STATE as DRAWER } from './reducers/drawer'
+import windowReducer, { INITIAL_STATE as WINDOW } from './reducers/window'
 
 const INITIAL_STATE: State = {
-  hello: HELLO
+  drawer: DRAWER,
+  window: WINDOW
 }
 
 export default combineReducers<State>({
-  hello: helloReducer,
+  drawer: drawerReducer,
+  window: windowReducer,
   routing: routerReducer
 })
